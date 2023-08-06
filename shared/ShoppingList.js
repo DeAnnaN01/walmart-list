@@ -27,4 +27,6 @@ const ShoppingList  = [
         categoryId: 7,
         notes: 'madelines'
     }
-]
+];
+
+export default ShoppingList;
