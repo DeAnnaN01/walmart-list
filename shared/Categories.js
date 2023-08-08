@@ -75,7 +75,7 @@ const Categories = [
             potatoes,
             bananas,
             grapes,
-            cantalope,
+            cantaloupe,
             cakes
         ]
     },
@@ -89,5 +89,5 @@ const Categories = [
     }
 ]
 
-export default categories;
+export default Categories;
 
