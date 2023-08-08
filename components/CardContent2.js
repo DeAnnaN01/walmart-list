@@ -7,7 +7,7 @@ import ShoppingList from '../shared/ShoppingList';
 
 export default CardContent2 = () => {
     return (
-        <Card containerStyle={{padding: 0, fontSize: }} >
+        <Card containerStyle={{padding: 0, fontSize: 18}} >
             {ShoppingList.map((sList, i) => <ListItem key={i} />)}
         </Card>
     )
