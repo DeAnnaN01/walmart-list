@@ -7,7 +7,7 @@ import CardContent from './CardContent';
 
 
 
-export default CardList = (props) => {
+export default CardList = () => {
 
 
     ShoppingList.map((sList, i) => {
