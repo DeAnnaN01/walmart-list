@@ -9,46 +9,35 @@ import {
 } from 'react-native'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import ShoppingList from '../shared/ShoppingList';
-import CardContent from '../components/CardContent';
+import CardContent3 from '../components/CardContent3';
+import { Button } from 'react-native-elements';
 
 
 
-
-// const sList = ({item, notes}) => (
-//     ShoppingList.map(() => {
-//         <View style={styles.container} >
-//             <Text style={styles.item}>{item}</Text>
-//             <Text style={styles.note} >{notes}</Text>
-//         </View>
-//     })
-// );
 
 
 const HomeScreen = () => {
-    // const [sList, setSList] = useState(ShoppingList);
-
-
-    // const renderItem = ({ item: sList }) => {
-    //     const { item, notes } = sList; // Destructure the properties from sList
-    //     return (
-    //         <View style={styles.item}>
-    //             <Text style={styles.itemText}>
-    //                 Item: {item}\n
-    //                 Notes: {notes}
-    //             </Text>
-    //         </View>
-    //     );
-    // };
 
     return (
         <>
-            <View>
-                <View style={styles.container}>
+            <View style={styles.container}>
+                <View style={{margin: 20}}>
                     <Text style={styles.text}>Shopping List</Text>
                 </View>
-                <View style={{padding: 10}} >
-                    <CardContent />
+                <View style={{margin: 10}} >
+                    <Button 
+                        title='Add Item'
+                        color='secondary'
+                        onPress={() => {}}
+                        style={{
+                            flex: 1,
+                            fontWeight: 'bold',
+                            fontSize: 20,
+                        }}
+                    />
+                </View>
+                <View style={{margin: 10}} >
+                    <CardContent3 />
                 </View>
             </View>
         </>
@@ -59,7 +48,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
+        alignItems: 'top',
         justifyContent: 'center',
         margin: 20,
     },
