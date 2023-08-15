@@ -6,8 +6,11 @@ import {
     StyleSheet,
     Text,
     StatusBar,
+    Modal,
 } from 'react-native'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {MaterialIcons} from '@expo/vector-icons';
+
 
 import CardContent3 from '../components/CardContent3';
 import { Button } from 'react-native-elements';
@@ -17,18 +20,33 @@ import { Button } from 'react-native-elements';
 
 
 const HomeScreen = () => {
+    const [showAddItemModal, setShowAddItemModal] = useState(false);
 
     return (
         <>
             <View style={styles.container}>
+
                 <View style={{margin: 20}}>
                     <Text style={styles.text}>Shopping List</Text>
                 </View>
+
+
+                <Modal visible={showAddItemModal} animationType='slide' >
+                        <View style={styles.modalContent} >
+                            <MaterialIcons 
+                                name='close'
+                                size={24}
+                                onPress={() => setShowAddItemModal(false)}
+                            />
+                            <Text style={styles.text} >Add Item</Text>
+                        </View>
+                </Modal>
+
                 <View style={{margin: 10}} >
                     <Button 
                         title='Add Item'
                         color='secondary'
-                        onPress={() => {}}
+                        onPress={() => setShowAddItemModal(true)}
                         style={{
                             flex: 1,
                             fontWeight: 'bold',
@@ -36,6 +54,7 @@ const HomeScreen = () => {
                         }}
                     />
                 </View>
+
                 <View style={{margin: 10}} >
                     <CardContent3 />
                 </View>
@@ -70,6 +89,12 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 18
     },
+    modalToggle: {
+        marginBottom: 10,
+        borderwidth: 1,
+        padding: 10,
+        alignSelf: 'center'
+    }
 });
 
 export default HomeScreen;
