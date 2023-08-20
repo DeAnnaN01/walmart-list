@@ -5,7 +5,7 @@ import ShoppingList from "../shared/ShoppingList";
 import Categories from "../shared/Categories";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const CardContent2 = (props) => {
+const CardContent3 = (props) => {
     const categoryMap = {
         1: "Pharmacy",
         2: "Beverages",
@@ -41,4 +41,4 @@ const CardContent2 = (props) => {
     );
 };
 
-export default CardContent2;
+export default CardContent3;

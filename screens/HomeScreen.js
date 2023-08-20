@@ -14,6 +14,8 @@ import {MaterialIcons} from '@expo/vector-icons';
 
 import CardContent3 from '../components/CardContent3';
 import { Button } from 'react-native-elements';
+import AddItemForm from './AddItemForm';
+import { render } from 'react-dom';
 
 
 
@@ -22,12 +24,13 @@ import { Button } from 'react-native-elements';
 const HomeScreen = () => {
     const [showAddItemModal, setShowAddItemModal] = useState(false);
 
+    
     return (
         <>
             <View style={styles.container}>
 
                 <View style={{margin: 20}}>
-                    <Text style={styles.text}>Shopping List</Text>
+                    <Text style={styles.textHeader}>Shopping List</Text>
                 </View>
 
 
@@ -35,10 +38,13 @@ const HomeScreen = () => {
                         <View style={styles.modalContent} >
                             <MaterialIcons 
                                 name='close'
-                                size={24}
+                                size={28}
                                 onPress={() => setShowAddItemModal(false)}
+                                style={styles.modalToggle}
                             />
-                            <Text style={styles.text} >Add Item</Text>
+                            <Text  style={styles.modalContent}>
+                                <AddItemForm />
+                            </Text>
                         </View>
                 </Modal>
 
@@ -71,7 +77,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 20,
     },
-    text: {
+    textHeader: {
         fontSize: 32,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -89,10 +95,17 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 18
     },
+    modalContent: {
+        flex: 1,
+        padding: 10
+    },
     modalToggle: {
+        marginTop: 30,
         marginBottom: 10,
-        borderwidth: 1,
+        borderWidth: 1,
+        borderColor: '#f2f2f2',
         padding: 10,
+        borderRadius: 10,
         alignSelf: 'center'
     }
 });
