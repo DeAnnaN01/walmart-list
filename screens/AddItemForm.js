@@ -3,12 +3,14 @@ import {StyleSheet, Button, TextInput, View, Text} from "react-native";
 import {globalStyles} from "../styles/global";
 import {Formik} from "formik";
 
-const AddItemForm = () => {
+export default function AddItemForm({addListItem}) {
     return (
         <View style={globalStyles.container}>
             <Formik
                 initialValues={{item: "", notes: "", categoryId: ""}}
-                onSubmit={(values) => {
+                onSubmit={(values, actions) => {
+                    actions.resetForm();
+                    addListItem(values);
                     console.log(values);
                 }}
             >
@@ -48,4 +50,3 @@ const AddItemForm = () => {
     );
 };
 
-export default AddItemForm;

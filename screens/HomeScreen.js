@@ -7,6 +7,8 @@ import {
     Text,
     StatusBar,
     Modal,
+    TouchableWithoutFeedback,
+    Keyboard
 } from 'react-native'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MaterialIcons} from '@expo/vector-icons';
@@ -15,7 +17,7 @@ import {MaterialIcons} from '@expo/vector-icons';
 import CardContent3 from '../components/CardContent3';
 import { Button } from 'react-native-elements';
 import AddItemForm from './AddItemForm';
-import { render } from 'react-dom';
+import ShoppingList from '../shared/ShoppingList';
 
 
 
@@ -23,6 +25,15 @@ import { render } from 'react-dom';
 
 const HomeScreen = () => {
     const [showAddItemModal, setShowAddItemModal] = useState(false);
+    const [sList, setSList] = useState(ShoppingList);
+
+    const addListItem = (listItem) => {
+        listItem.key = sList.length;
+        setSList((currentSList) => {
+            return [listItem, ...currentSList];
+        });
+        setShowAddItemModal(false);
+    }
 
     
     return (
@@ -35,6 +46,7 @@ const HomeScreen = () => {
 
 
                 <Modal visible={showAddItemModal} animationType='slide' >
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss} >    
                         <View style={styles.modalContent} >
                             <MaterialIcons 
                                 name='close'
@@ -43,9 +55,10 @@ const HomeScreen = () => {
                                 style={styles.modalToggle}
                             />
                             <Text  style={styles.modalContent}>
-                                <AddItemForm />
+                                <AddItemForm addListItem={addListItem} />
                             </Text>
                         </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
 
                 <View style={{margin: 10}} >
