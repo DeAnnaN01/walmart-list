@@ -24,7 +24,7 @@ export const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         padding: 5,
-        alignContent: 'top',
+        alignContent: 'center',
     },
     item: {
         padding: 10,

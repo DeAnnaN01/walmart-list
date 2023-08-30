@@ -1,20 +1,23 @@
-import React from "react";
-import {StyleSheet, Button, TextInput, View, Text} from "react-native";
+import {Button, TextInput, View} from "react-native";
 import {globalStyles} from "../styles/global";
 import {Formik} from "formik";
+import {useState} from "react";
 
-export default function AddItemForm({addListItem}) {
+
+
+const AddItemForm = (addListItem) => {
     return (
         <View style={globalStyles.container}>
             <Formik
                 initialValues={{item: "", notes: "", categoryId: ""}}
                 onSubmit={(values, actions) => {
-                    actions.resetForm();
                     addListItem(values);
                     console.log(values);
+                    actions.resetForm();
                 }}
             >
                 {(props) => (
+                    <form onSubmit={props.handleSubmit}>
                         <View style={{margin: 30, flex: 1, alignContent: "space-between"}}>
                             <TextInput
                                 label="Item"
@@ -23,7 +26,6 @@ export default function AddItemForm({addListItem}) {
                                 onChangeText={props.handleChange("item")}
                                 value={props.values.item}
                             />
-
                             <TextInput
                                 label="Notes"
                                 multiline
@@ -32,7 +34,6 @@ export default function AddItemForm({addListItem}) {
                                 onChangeText={props.handleChange("notes")}
                                 value={props.values.notes}
                             />
-
                             <TextInput
                                 label="Category ID"
                                 style={globalStyles.input}
@@ -41,12 +42,13 @@ export default function AddItemForm({addListItem}) {
                                 value={props.values.categoryId}
                                 keyboardType="numeric"
                             />
-
                             <Button title="Submit" color="purple" onPress={props.handleSubmit} />
                         </View>
+                    </form>
                 )}
             </Formik>
         </View>
     );
 };
 
+export default AddItemForm;

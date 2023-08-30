@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'blue',
         padding: 5,
-        alignContent: 'top',
+        alignContent: 'center',
     },
     item: {
         padding: 10,

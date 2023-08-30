@@ -1,11 +1,21 @@
-import React from "react";
-import {View, Text} from "react-native";
+import React, {useState} from "react";
+import {View, Text, Pressable, StyleSheet} from "react-native";
 import {Card} from "react-native-elements";
 import ShoppingList from "../shared/ShoppingList";
-import Categories from "../shared/Categories";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CardContent3 = (props) => {
+    const [selectedItems, setSelectedItems] = useState([]);
+
+    const toggleItem = (item) => {
+        if (selectedItems.includes(item)) {
+            setSelectedItems(selectedItems.filter((i) => i !== item));
+        } else {
+            setSelectedItems([...selectedItems, item]);
+        }
+    };
+
+    const isItemSelected = (item) => selectedItems.includes(item);
+
     const categoryMap = {
         1: "Pharmacy",
         2: "Beverages",
@@ -29,10 +39,20 @@ const CardContent3 = (props) => {
                         </Card.Title>
                         <Card.Divider />
                         {filteredItems.map((sList, i) => (
-                            <View key={i} style={{padding: 10, flex: 1}}>
-                                <Text style={{fontSize: 20}}>{sList.item}</Text>
-                                <Text style={{fontSize: 14, flex: 1, paddingLeft: 20}}>{sList.notes}</Text>
-                            </View>
+                            <Pressable
+                                key={i}
+                                onPress={() => toggleItem(sList.item)}
+                                style={[styles.text, isItemSelected(sList.item) && styles.selectedText]}
+                            >
+                                <View style={{padding: 10, flex: 1}}>
+                                    <Text style={{fontSize: 24, color: "blue", fontWeight: "regular"}}>
+                                        {sList.item}
+                                    </Text>
+                                    <Text style={{fontSize: 18, flex: 1, paddingLeft: 25, color: "purple"}}>
+                                        {sList.notes}
+                                    </Text>
+                                </View>
+                            </Pressable>
                         ))}
                     </Card>
                 );
@@ -40,5 +60,14 @@ const CardContent3 = (props) => {
         </>
     );
 };
+
+const styles = StyleSheet.create({
+    text: {
+        textDecorationLine: "none",
+    },
+    selectedText: {
+        textDecorationLine: "line-through",
+    },
+});
 
 export default CardContent3;
