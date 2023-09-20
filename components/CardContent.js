@@ -1,41 +1,80 @@
+import React, {useState} from "react";
+import {View, Text, Pressable, StyleSheet} from "react-native";
+import {Card} from "react-native-elements";
+import ShoppingList from "../shared/ShoppingList";
+import { ScrollView } from "react-native";
 
-import { View, Text, Image } from 'react-native'
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
-import ShoppingList from '../shared/ShoppingList';
-import Categories from '../shared/Categories';
+const CardContent3 = (props) => {
+    const [selectedItems, setSelectedItems] = useState([]);
+
+    const toggleItem = (item) => {
+        if (selectedItems.includes(item)) {
+            setSelectedItems(selectedItems.filter((i) => i !== item));
+        } else {
+            setSelectedItems([...selectedItems, item]);
+        }
+    };
 
 
+    const isItemSelected = (item) => selectedItems.includes(item);
 
-
-const CardContent = (props) => {
+    const categoryMap = {
+        1: "Pharmacy",
+        2: "Beverages",
+        3: "Non-Food",
+        4: "General",
+        5: "Meat/Cheese",
+        6: "Frozen",
+        7: "Produce/Bakery",
+        8: "Unknown",
+    };
 
     return (
-        <Card >
-        <Card.Title >{Categories.id}: {Categories.area}</Card.Title>
-        <Card.Divider/>
-        {
-            ShoppingList.map((sList, i) => {
+        <>
+            <ScrollView style={{flex:1}}>
 
-                // if (sList.categoryId === cat.id) { 
+                {/* This is what sorts my list by categoryId */}
+                {Object.entries(categoryMap).map(([categoryId, categoryTitle]) => {
+                    const filteredItems = ShoppingList.filter((sList) => sList.categoryId === parseInt(categoryId));
+
                     return (
-                        <View key={i} style={{padding: 10, flex: 1}}>
-                            <Text style={{fontSize: 14}} >
-                                {sList.categoryId}
-                            </Text>
-                            <Text style={{fontSize: 20}}>
-                                {sList.item}
-                            </Text>
-                            <Text style={{fontSize: 16, flex: 1}}>
-                                {sList.notes}
-                            </Text>
-                        </View>
+                        // Shopping List sorted by categoryId
+                        <Card key={categoryId} style={{alignContent: "center"}}>
+                            <Card.Title>
+                                {categoryId}: {categoryTitle}
+                            </Card.Title>
+                            <Card.Divider />
+                            {filteredItems.map((sList, i) => (
+                                <Pressable
+                                    key={i}
+                                    onPress={() => toggleItem(sList.item)}
+                                    style={[styles.text, isItemSelected(sList.item) && styles.selectedText]}
+                                >
+                                    <View style={{padding: 10, flex: 1}}>
+                                        <Text style={{fontSize: 24, color: "blue", fontWeight: "regular"}}>
+                                            {sList.item}
+                                        </Text>
+                                        <Text style={{fontSize: 18, flex: 1, paddingLeft: 25, color: "purple"}}>
+                                            {sList.notes}
+                                        </Text>
+                                    </View>
+                                </Pressable>
+                            ))}
+                        </Card>
                     );
-                // };
-            })
-        }
-        </Card>
-    )
+                })}
+            </ScrollView>
+        </>
+    );
 };
 
+const styles = StyleSheet.create({
+    text: {
+        textDecorationLine: "none",
+    },
+    selectedText: {
+        textDecorationLine: "line-through",
+    },
+});
 
-export default CardContent;
+export default CardContent3;

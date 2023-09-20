@@ -12,9 +12,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MaterialIcons} from '@expo/vector-icons';
 
 
-import CardContent3 from '../components/CardContent3';
+import CardContent3 from '../components/CardContent';
 import { Button } from 'react-native-elements';
-import AddItemForm from './AddItemForm3';
+import AddItemForm from './AddItemForm';
 
 
 
@@ -30,27 +30,29 @@ const HomeScreen = () => {
             <SafeAreaView>
                 <View style={styles.container}>
 
+                    {/* Title of my page */}
                     <View style={{margin: 20}}>
                         <Text style={styles.textHeader}>Shopping List</Text>
                     </View>
 
-
-                    <Modal visible={showAddItemModal} animationType='slide' >
-                            
-                            <View style={styles.modalContent} >
-                                <MaterialIcons 
-                                    name='close'
-                                    size={28}
-                                    onPress={() => setShowAddItemModal(false)}
-                                    style={styles.modalToggle}
-                                />
-                                <Text  style={styles.modalContent}>
-                                    <AddItemForm />
-                                </Text>
-                            </View>
-                            
+                    {/* Modal to add item to the Shopping List */}
+                    <Modal 
+                        visible={showAddItemModal} animationType='slide' 
+                    >
+                        <View style={styles.modalContent} >
+                            <MaterialIcons 
+                                name='close'
+                                size={28}
+                                onPress={() => setShowAddItemModal(false)}
+                                style={styles.modalToggle}
+                            />
+                            <Text  style={styles.modalContent}>
+                                <AddItemForm />
+                            </Text>
+                        </View>
                     </Modal>
-
+                        
+                    {/* Button to activate the modal */}
                     <View style={{padding: 10}} >
                         <Button 
                             title='Add Item'
@@ -65,7 +67,8 @@ const HomeScreen = () => {
                             }}
                         />
                     </View>
-
+                    
+                    {/* Displays the Shopping List */}
                     <View style={{margin: 10}} >
                         <CardContent3 />
                     </View>
