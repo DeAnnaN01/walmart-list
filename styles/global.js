@@ -10,13 +10,14 @@ export const globalStyles = StyleSheet.create({
         padding: 10,
         fontSize: 20,
         borderRadius: 6,
+        margin: 20,
     },
     container: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'top',
         justifyContent: 'center',
-        margin: 20,
+        margin: 10,
         alignContent: 'center'
     },
     textTitle: {
@@ -29,7 +30,7 @@ export const globalStyles = StyleSheet.create({
     item: {
         padding: 10,
         flex: 1,
-        fontSize: 24,
+        fontSize: 22,
     },
     note: {
         padding: 10,

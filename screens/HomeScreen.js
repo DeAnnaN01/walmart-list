@@ -14,9 +14,7 @@ import {MaterialIcons} from '@expo/vector-icons';
 
 import CardContent3 from '../components/CardContent3';
 import { Button } from 'react-native-elements';
-import AddItemForm from './AddItemForm';
-import { render } from 'react-dom';
-import ShoppingList from '../shared/ShoppingList';
+import AddItemForm from './AddItemForm3';
 
 
 
@@ -24,59 +22,55 @@ import ShoppingList from '../shared/ShoppingList';
 
 const HomeScreen = () => {
     const [showAddItemModal, setShowAddItemModal] = useState(false);
-    const [sList, setSList] = useState(ShoppingList);
 
-    const addListItem = (listItem) => {
-        listItem.key = sList.length;
-        setSList((currentSList) => {
-            return [listItem, ...currentSList];
-        });
-        setShowAddItemModal(false);
-    }
 
     
     return (
         <>
-            <View style={styles.container}>
+            <SafeAreaView>
+                <View style={styles.container}>
 
-                <View style={{margin: 20}}>
-                    <Text style={styles.textHeader}>Shopping List</Text>
+                    <View style={{margin: 20}}>
+                        <Text style={styles.textHeader}>Shopping List</Text>
+                    </View>
+
+
+                    <Modal visible={showAddItemModal} animationType='slide' >
+                            
+                            <View style={styles.modalContent} >
+                                <MaterialIcons 
+                                    name='close'
+                                    size={28}
+                                    onPress={() => setShowAddItemModal(false)}
+                                    style={styles.modalToggle}
+                                />
+                                <Text  style={styles.modalContent}>
+                                    <AddItemForm />
+                                </Text>
+                            </View>
+                            
+                    </Modal>
+
+                    <View style={{padding: 10}} >
+                        <Button 
+                            title='Add Item'
+                            color='secondary'
+                            onPress={() => setShowAddItemModal(true)}
+                            style={{
+                                flex: 1,
+                                fontWeight: 'bold',
+                                fontSize: 20,
+                                marginLeft: 15,
+                                marginRight: 15
+                            }}
+                        />
+                    </View>
+
+                    <View style={{margin: 10}} >
+                        <CardContent3 />
+                    </View>
                 </View>
-
-
-                <Modal visible={showAddItemModal} animationType='slide' >
-                        
-                        <View style={styles.modalContent} >
-                            <MaterialIcons 
-                                name='close'
-                                size={28}
-                                onPress={() => setShowAddItemModal(false)}
-                                style={styles.modalToggle}
-                            />
-                            <Text  style={styles.modalContent}>
-                                <AddItemForm addListItem={addListItem} />
-                            </Text>
-                        </View>
-                        
-                </Modal>
-
-                <View style={{margin: 10}} >
-                    <Button 
-                        title='Add Item'
-                        color='secondary'
-                        onPress={() => setShowAddItemModal(true)}
-                        style={{
-                            flex: 1,
-                            fontWeight: 'bold',
-                            fontSize: 20,
-                        }}
-                    />
-                </View>
-
-                <View style={{margin: 10}} >
-                    <CardContent3 />
-                </View>
-            </View>
+            </SafeAreaView>
         </>
     );
 };
@@ -85,9 +79,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'top',
+        alignContent: 'center',
         justifyContent: 'center',
-        margin: 20,
+        margin: 5,
     },
     textHeader: {
         fontSize: 32,
@@ -98,9 +92,9 @@ const styles = StyleSheet.create({
         alignContent: 'center',
     },
     item: {
-        padding: 10,
+        paddingBottom: 10,
         flex: 1,
-        fontSize: 24,
+        fontSize: 20,
     },
     note: {
         padding: 10,

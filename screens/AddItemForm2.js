@@ -2,10 +2,12 @@ import {Button, TextInput, View} from "react-native";
 import {globalStyles} from "../styles/global";
 import {Formik, Form} from "formik";
 import {useState} from "react";
-
+import {Picker} from '@react-native-picker/picker';
 
 
 const AddItemForm = (addListItem) => {
+    const [selectedCategory, setSelectedCategory] = useState("");
+
     return (
         <View style={globalStyles.container}>
             <Formik
@@ -34,14 +36,23 @@ const AddItemForm = (addListItem) => {
                                 onChangeText={props.handleChange("notes")}
                                 value={props.values.notes}
                             />
-                            <TextInput
-                                label="Category ID"
+                            <Picker
+                                selectedValue={selectedCategory}
                                 style={globalStyles.input}
-                                placeholder="Category Number"
-                                onChangeText={props.handleChange("categoryId")}
-                                value={props.values.categoryId}
-                                keyboardType="numeric"
-                            />
+                                onValueChange={(itemValue) => {
+                                    setSelectedCategory(itemValue);
+                                    props.setFieldValue("categoryId", itemValue);
+                                }}
+                            >
+                                <Picker.Item label="1: Pharmacy" value="1" />
+                                <Picker.Item label="2: Beverages" value="2" />
+                                <Picker.Item label="3: Non-Food" value="3" />
+                                <Picker.Item label="4: General" value="4" />
+                                <Picker.Item label="5: Meat/Cheese" value="5" />
+                                <Picker.Item label="6: Frozen" value="6" />
+                                <Picker.Item label="7: Produce/Bakery" value="7" />
+                                <Picker.Item label="8: Unknown" value="8" />
+                            </Picker>
                             <Button title="Submit" color="purple" onPress={props.handleSubmit} />
                         </View>
                     </Form>
@@ -52,3 +63,11 @@ const AddItemForm = (addListItem) => {
 };
 
 export default AddItemForm;
+
+
+
+
+
+
+
+
