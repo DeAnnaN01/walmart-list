@@ -4,16 +4,23 @@ import {Formik, Form} from "formik";
 import {useState} from "react";
 import {Picker} from '@react-native-picker/picker';
 import ItemList from "../shared/ItemList";
-import ShoppingList from "../shared/ShoppingList";
 
 
-const AddItemForm = () => {
+const AddItem = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [itemList, setItemList] = useState(ItemList);
     const [selectedItem, setSelectedItem] = useState(ItemList);
 
 
-    const AddListItem = (values) => ShoppingList.push(values);
+    const AddListItem = (values) => {
+        if (values.item !== values.id) {
+            // Handle the case when a new item is added
+            setItemList((prevItemList) => [...prevItemList, values]);
+            ItemList.push(values);
+        }
+
+        ShoppingList.push(values);
+    };
 
 
     return (
@@ -21,14 +28,7 @@ const AddItemForm = () => {
             <Formik
                 initialValues={{id: 0, item: "", notes: "", categoryId: 0}}
                 onSubmit={(values, actions) => {
-                    if (values.item !== values.id) {
-                        // Handle the case when a new item is added
-                        setItemList((prevItemList) => [...prevItemList, values]);
-                        ItemList.push(values);
-                    }
-                    // Handle the case when an existing item is selected
                     AddListItem(values);
-                    
                     console.log(values);
                     actions.resetForm();
                     setShowModal(false);
@@ -44,10 +44,10 @@ const AddItemForm = () => {
                                 onValueChange={(item) => {
                                     if (item === "") {
                                         // Prompt the user to enter a new item
-                                        Alert.prompt("Enter a new item", "", (text) => {
-                                            if (text) {
-                                                setSelectedItem(text);
-                                                props.setFieldValue("item", text);
+                                        Alert.prompt("Enter a new item", "", (item) => {
+                                            if (item) {
+                                                setSelectedItem(item);
+                                                props.setFieldValue("item", item);
                                             }
                                         });
                                     } else {
@@ -99,7 +99,7 @@ const AddItemForm = () => {
     );
 };
 
-export default AddItemForm;
+export default AddItem;
 
 
 

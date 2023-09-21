@@ -1,7 +1,7 @@
 import { Text, View, StatusBar, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
-import HomeScreen from './screens/HomeScreen';
+import HomeScreen from './screens/HomeScreen2';
 
 
 const App = () => {

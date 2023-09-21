@@ -3,8 +3,9 @@ import {View, Text, Pressable, StyleSheet} from "react-native";
 import {Card} from "react-native-elements";
 import ShoppingList from "../shared/ShoppingList";
 import { ScrollView } from "react-native";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
-const CardContent3 = (props) => {
+const CardContent = (props) => {
     const [selectedItems, setSelectedItems] = useState([]);
 
     const toggleItem = (item) => {
@@ -52,7 +53,11 @@ const CardContent3 = (props) => {
                                 >
                                     <View style={{padding: 10, flex: 1}}>
                                         <Text style={{fontSize: 24, color: "blue", fontWeight: "regular"}}>
-                                            {sList.item}
+                                            <BouncyCheckbox
+                                                TouchableComponent={Pressable}
+                                                onPress={({isChecked: boolean}) => {}} 
+                                            />
+                                                {sList.item}
                                         </Text>
                                         <Text style={{fontSize: 18, flex: 1, paddingLeft: 25, color: "purple"}}>
                                             {sList.notes}
@@ -77,4 +82,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CardContent3;
+export default CardContent;

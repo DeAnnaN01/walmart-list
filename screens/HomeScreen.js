@@ -1,20 +1,17 @@
-import React, { useState, useEffect, Dispatch } from 'react';
+import React, { useState} from 'react';
 import {
     SafeAreaView,
     View,
-    FlatList,
     StyleSheet,
     Text,
-    StatusBar,
-    Modal,
 } from 'react-native'; 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MaterialIcons} from '@expo/vector-icons';
+import Modal from "react-native-modal";
 
 
-import CardContent3 from '../components/CardContent';
+import CardContent from '../components/CardContent2';
 import { Button } from 'react-native-elements';
-import AddItemForm from './AddItemForm';
+import AddItem from './AddItemScreen';
 
 
 
@@ -23,7 +20,9 @@ import AddItemForm from './AddItemForm';
 const HomeScreen = () => {
     const [showAddItemModal, setShowAddItemModal] = useState(false);
 
-
+    const toggleModal = () => {
+        setShowAddItemModal(!showAddItemModal);
+    }
     
     return (
         <>
@@ -34,30 +33,13 @@ const HomeScreen = () => {
                     <View style={{margin: 20}}>
                         <Text style={styles.textHeader}>Shopping List</Text>
                     </View>
-
-                    {/* Modal to add item to the Shopping List */}
-                    <Modal 
-                        visible={showAddItemModal} animationType='slide' 
-                    >
-                        <View style={styles.modalContent} >
-                            <MaterialIcons 
-                                name='close'
-                                size={28}
-                                onPress={() => setShowAddItemModal(false)}
-                                style={styles.modalToggle}
-                            />
-                            <Text  style={styles.modalContent}>
-                                <AddItemForm />
-                            </Text>
-                        </View>
-                    </Modal>
                         
                     {/* Button to activate the modal */}
                     <View style={{padding: 10}} >
                         <Button 
                             title='Add Item'
                             color='secondary'
-                            onPress={() => setShowAddItemModal(true)}
+                            onPress={toggleModal}
                             style={{
                                 flex: 1,
                                 fontWeight: 'bold',
@@ -67,10 +49,31 @@ const HomeScreen = () => {
                             }}
                         />
                     </View>
+
+
+                    {/* Modal to add item to the Shopping List */}
+                    <Modal 
+                        isVisible={showAddItemModal} 
+                        animationIn='slideInUp'
+                        animationOut='slideOutDown'
+                        avoidKeyboard={true}
+                    >
+                        <View style={styles.modalContent} >
+                            <MaterialIcons 
+                                name='close'
+                                size={28}
+                                onPress={toggleModal}
+                                style={styles.modalToggle}
+                            />
+                            <Text  style={styles.modalContent}>
+                                <AddItem />
+                            </Text>
+                        </View>
+                    </Modal>
                     
                     {/* Displays the Shopping List */}
                     <View style={{margin: 10}} >
-                        <CardContent3 />
+                        <CardContent />
                     </View>
                 </View>
             </SafeAreaView>
