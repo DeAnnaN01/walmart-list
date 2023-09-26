@@ -7,7 +7,7 @@ import HomeScreen from './screens/HomeScreen2';
 const App = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.Text}>
+            <Text style={styles.text}>
                 <HomeScreen />
             </Text>
             <StatusBar style="auto" />

@@ -31,36 +31,40 @@ const CardContent = (props) => {
     };
 
     return (
-        <ScrollView style={{flex: 1}}>
+        <>
             {/* This is what sorts my list by categoryId */}
             {Object.entries(categoryMap).map(([categoryId, categoryTitle]) => {
                 const filteredItems = ShoppingList.filter((sList) => sList.categoryId === parseInt(categoryId));
 
                 return (
-                    <Card key={categoryId}>
-                        <Card.Title>
-                            {categoryId}: {categoryTitle}
-                        </Card.Title>
-                        <Card.Divider />
-                        {filteredItems.map((sList, i) => (
-                            <Pressable
-                                key={i}
-                                onPress={() => toggleItem(sList.item)}
-                                style={[styles.text, isItemSelected(sList.item) && styles.selectedText]}
-                            >
-                                <View style={{padding: 10, flex: 1}}>
-                                    <Text style={styles.itemText}>
-                                        <BouncyCheckbox fillColor={'purple'} />
-                                            {sList.item}
-                                    </Text>
-                                    <Text style={styles.notesText}>{sList.notes}</Text>
-                                </View>
-                            </Pressable>
-                        ))}
-                    </Card>
+                    <ScrollView style={{flex: 1}}>
+                        <Card key={categoryId}>
+                            <Card.Title>
+                                {categoryId}: {categoryTitle}
+                            </Card.Title>
+                            <Card.Divider />
+                            {filteredItems.map((sList, index) => (
+                                <Pressable
+                                    key={index}
+                                    onPress={() => toggleItem(sList.item)}
+                                    style={[styles.text, isItemSelected(sList.item) && styles.selectedText]}
+                                >
+                                    <View style={{padding: 10, flex: 1}}>
+                                        <Text style={styles.itemText}>
+                                            <BouncyCheckbox fillColor={'purple'} />
+                                                {sList.item}
+                                        </Text>
+                                        <Text style={styles.notesText}>
+                                            {sList.notes}
+                                        </Text>
+                                    </View>
+                                </Pressable>
+                            ))}
+                        </Card>
+                    </ScrollView>
                 );
             })}
-        </ScrollView>
+        </>
     );
 };
 
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
     },
     notesText: {
         fontSize: 18,
-        paddingLeft: 25,
+        paddingLeft: 45,
         color: "purple",
     },
 });

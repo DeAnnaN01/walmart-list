@@ -10,9 +10,10 @@ import ShoppingList from "../shared/ShoppingList";
 
 
 const AddItem = () => {
-    const [selectedCategory, setSelectedCategory] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState(0);
     const [itemList, setItemList] = useState(ItemList);
     const [selectedItem, setSelectedItem] = useState(ItemList);
+    const [notes, setNotes] = useState('')
 
 
     const AddListItem = (values) => {

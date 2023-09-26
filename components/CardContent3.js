@@ -3,7 +3,7 @@ import {View, Text, Pressable, StyleSheet} from "react-native";
 import {Card} from "react-native-elements";
 import ShoppingList from "../shared/ShoppingList";
 
-const CardContent3 = (props) => {
+const CardContent = (props) => {
     const [selectedItems, setSelectedItems] = useState([]);
 
     const toggleItem = (item) => {
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CardContent3;
+export default CardContent;

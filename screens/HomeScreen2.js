@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import {SafeAreaView, View, StyleSheet, Text, TouchableOpacity} from "react-native";
-import {MaterialIcons} from "@expo/vector-icons";
-import Modal from "react-native-modal";
+import {SafeAreaView, View, StyleSheet, Text, TouchableOpacity, Modal, ScrollView, Button} from "react-native";
+// import {MaterialIcons} from "@expo/vector-icons";
+// import Modal from "react-native-modal";
 import CardContent from "../components/CardContent2";
-import AddItem from "../components/AddItem";
-import {Button} from 'react-native-elements';
+import AddItem from "../components/AddItem2";
+// import {Button} from 'react-native-elements';
 
 const HomeScreen = () => {
     const [showAddItemModal, setShowAddItemModal] = useState(false);
@@ -15,32 +15,43 @@ const HomeScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <TouchableOpacity >
-                <Text style={styles.textHeader}>Shopping List</Text>
-                <View style={{flexDirection: 'column', flex: 1}}>
-                    <Button title="Add Item" color="secondary" onPress={toggleModal} style={styles.button}>
-                        Add Item
-                    </Button>
-                </View>
-                <View>
-                    <Modal
-                        isVisible={showAddItemModal}
-                        animationIn="slideInUp"
-                        animationOut="slideOutDown"
-                        avoidKeyboard={true}
-                    >
-                        <View style={styles.modalContent}>
-                            <MaterialIcons name="close" size={30} onPress={toggleModal} style={styles.modalToggle}/>
-                        </View>
-                        <View style={styles.modalContent}>
-                            <AddItem props/>
-                        </View>
-                    </Modal>
-                </View>
-                <View style={styles.cardContent}>
-                    <CardContent />
-                </View>
-            </TouchableOpacity>
+            <ScrollView>
+                <TouchableOpacity >
+                    <Text style={styles.textHeader}>Shopping List</Text>
+                    <View style={{flexDirection: 'column', flex: 1}}>
+                        <Button 
+                            title="Add Item" 
+                            color="secondary" 
+                            onPress={toggleModal} 
+                            style={styles.button}
+                        />
+                    </View>
+                    <View>
+                        <Modal
+                            animationType='slide'
+                            transparent={false}
+                            visible={showAddItemModal}
+                            onRequestClose={() => toggleModal}
+                        >
+                            <View style={styles.modal}>
+                                {/* <MaterialIcons name="close" size={30} onPress={toggleModal} style={styles.modalToggle}/> */}
+                                <Text style={styles.modalTitle} >
+                                    Add Item to Shopping List
+                                </Text>
+                                <AddItem />
+                                <Button  
+                                    onPress={toggleModal}
+                                    color='purple'
+                                    title='Close'
+                                />
+                            </View>
+                        </Modal>
+                    </View>
+                    <View style={styles.cardContent}>
+                        <CardContent />
+                    </View>
+                </TouchableOpacity>
+            </ScrollView>
         </SafeAreaView>
     );
 };
@@ -83,6 +94,22 @@ const styles = StyleSheet.create({
     },
     cardContent: {
         margin: 10,
+    },
+    modal: {
+        justifyContent: 'center',
+        margin: 20
+    },
+    modalTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        backgroundColor: '#5637DD',
+        textAlign: 'center',
+        color: '#fff',
+        marginBottom: 20
+    },
+    modalText: {
+        fontSize: 18,
+        margin: 10
     },
 });
 
