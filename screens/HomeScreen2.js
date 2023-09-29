@@ -15,13 +15,13 @@ const HomeScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>
+            <ScrollView  style={{padding: 0}}>
                 <TouchableOpacity >
                     <Text style={styles.textHeader}>Shopping List</Text>
                     <View style={{flexDirection: 'column', flex: 1}}>
                         <Button 
                             title="Add Item" 
-                            color="secondary" 
+                            color="purple" 
                             onPress={toggleModal} 
                             style={styles.button}
                         />

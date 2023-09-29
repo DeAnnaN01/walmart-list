@@ -1,52 +1,79 @@
-import { useState } from 'react';
-import { Text, View, ScrollView, StyleSheet, Button } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-
+import React, { useState, SetState } from "react";
+import {
+    Text,
+    View,
+    ScrollView,
+    StyleSheet,
+    Button,
+    TextInput,
+} from "react-native";
+import {Input} from 'react-native-elements';
+import { Picker } from "@react-native-picker/picker";
+import ShoppingList from "../shared/ShoppingList";
 
 const AddItem = () => {
-    const [item, setItem] = useState('');
-    const [notes, setNotes] = useState('');
+    const [item, setItem] = useState("");
+    const [notes, setNotes] = useState("");
     const [categoryId, setCategoryId] = useState(8);
+    const [sListItem, setSListItem] = useState(ShoppingList);
 
-    const newSListItem = {
-        item,
-        notes,
-        categoryId,
-    }
-
+    // const handleChange = (value, name) => {
+    //     if (name === "item") {
+    //         setItem(value);
+    //     } else if (name === "notes") {
+    //         setNotes(value);
+    //     }
+    // };
 
     const handleAddItem = () => {
+        const newSListItem = sListItem.concat({
+            item,
+            notes,
+            categoryId,
+        });
         console.log(`Added item: ${item}`);
         console.log(`Added notes: ${notes}`);
         console.log(`Added category: ${categoryId}`);
-        console.log({newSListItem});
+        console.log({
+            newSListItem,
+        });
+        setSListItem(newSListItem);
+        return sListItem;
     };
 
     const resetForm = () => {
-        setItem('');
-        setNotes('');
+        setItem("");
+        setNotes("");
         setCategoryId(8);
-
     };
-
 
     return (
         <ScrollView>
-            <View style={styles.formRow} >
-                <Text style={styles.formLabel} >
-                    Item: 
-                </Text>
+            <View style={styles.formRow}>
+                <Text style={styles.formLabel}>Item:</Text>
+                <Input
+                    style={styles.formInput}
+                    type="text"
+                    name="item"
+                    value={item}
+                    placeholder='Item'
+                    onChangeText={(item) => setItem(item)}
+                />
             </View>
-            <View style={styles.formRow} >
-                <Text style={styles.formLabel} >
-                    Notes: 
-                </Text>
+            <View style={styles.formRow}>
+                <Text style={styles.formLabel}>Notes:</Text>
+                <Input
+                    style={styles.formInput}
+                    type="text"
+                    name="notes"
+                    value={notes}
+                    placeholder='Notes'
+                    onChangeText={(notes) => setNotes(notes)}
+                />
             </View>
-            <View style={styles.formRow} >
-                <Text style={styles.formLabel} >
-                    Category:
-                </Text>
-                <Picker 
+            <View style={styles.formRow}>
+                <Text style={styles.formLabel}>Category:</Text>
+                <Picker
                     style={styles.formItem}
                     selectedValue={categoryId}
                     onValueChange={(itemValue) => {
@@ -63,34 +90,33 @@ const AddItem = () => {
                     <Picker.Item label="8: Unknown" value="8" />
                 </Picker>
             </View>
-            <View style={styles.formRow} >
-                <Button  
+            <View style={styles.formRow}>
+                <Button
                     onPress={() => handleAddItem()}
-                    title='Sumbit'
-                    color='purple'
-                    accessibilityLabel='Tap me to add this item to your Shopping List'
+                    title="Add"
+                    color="purple"
+                    accessibilityLabel="Tap me to add this item to your Shopping List"
                 />
             </View>
         </ScrollView>
-    )
+    );
 };
-
 
 const styles = StyleSheet.create({
     formRow: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         flex: 1,
-        flexDirection:"row",
-        margin: 20
+        flexDirection: "row",
+        margin: 20,
     },
     formLabel: {
         fontSize: 18,
-        flex: 2
+        flex: 2,
     },
     formItem: {
-        flex: 1
-    }
+        flex: 1,
+    },
 });
 
 

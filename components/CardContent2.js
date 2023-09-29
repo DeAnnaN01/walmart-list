@@ -31,13 +31,12 @@ const CardContent = (props) => {
     };
 
     return (
-        <>
+        <ScrollView style={{flex: 1}}>
             {/* This is what sorts my list by categoryId */}
             {Object.entries(categoryMap).map(([categoryId, categoryTitle]) => {
                 const filteredItems = ShoppingList.filter((sList) => sList.categoryId === parseInt(categoryId));
 
                 return (
-                    <ScrollView style={{flex: 1}}>
                         <Card key={categoryId}>
                             <Card.Title>
                                 {categoryId}: {categoryTitle}
@@ -61,10 +60,9 @@ const CardContent = (props) => {
                                 </Pressable>
                             ))}
                         </Card>
-                    </ScrollView>
                 );
             })}
-        </>
+        </ScrollView>
     );
 };
 
@@ -78,7 +76,7 @@ const styles = StyleSheet.create({
     itemText: {
         fontSize: 24,
         color: "blue",
-        fontWeight: "regular",
+        fontWeight: "normal",
     },
     notesText: {
         fontSize: 18,
