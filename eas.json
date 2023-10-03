@@ -14,9 +14,7 @@
             "developmentClient": true
         },
         "production": {}
-    }
-}
-{
+    },
     "build": {
         "preview": {
             "ios": {
