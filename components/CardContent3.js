@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {View, Text, Pressable, StyleSheet} from "react-native";
 import {Card} from "react-native-elements";
 import ShoppingList from "../shared/ShoppingList";
+import { ScrollView } from "react-native";
 
 const CardContent = (props) => {
     const [selectedItems, setSelectedItems] = useState([]);
@@ -28,7 +29,7 @@ const CardContent = (props) => {
     };
 
     return (
-        <>
+        <ScrollView>
             {Object.entries(categoryMap).map(([categoryId, categoryTitle]) => {
                 const filteredItems = ShoppingList.filter((sList) => sList.categoryId === parseInt(categoryId));
 
@@ -57,7 +58,7 @@ const CardContent = (props) => {
                     </Card>
                 );
             })}
-        </>
+        </ScrollView>
     );
 };
 

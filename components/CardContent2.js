@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     itemText: {
         fontSize: 24,
         color: "blue",
-        fontWeight: "normal",
+        fontWeight: "bold",
     },
     notesText: {
         fontSize: 18,

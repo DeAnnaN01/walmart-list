@@ -3,11 +3,13 @@ import {SafeAreaView, View, StyleSheet, Text, TouchableOpacity, Modal, ScrollVie
 // import {MaterialIcons} from "@expo/vector-icons";
 // import Modal from "react-native-modal";
 import CardContent from "../components/CardContent2";
+import ShoppingList from "../shared/ShoppingList";
 import AddItem from "../components/AddItem2";
 // import {Button} from 'react-native-elements';
 
 const HomeScreen = () => {
     const [showAddItemModal, setShowAddItemModal] = useState(false);
+    const [ShoppingList, setShoppingList] = useState(ShoppingList);
 
     const toggleModal = () => {
         setShowAddItemModal(!showAddItemModal);
@@ -48,7 +50,7 @@ const HomeScreen = () => {
                         </Modal>
                     </View>
                     <View style={styles.cardContent}>
-                        <CardContent />
+                        <CardContent props/>
                     </View>
                 </TouchableOpacity>
             </ScrollView>
