@@ -1,22 +1,19 @@
 {
     "build": {
-        "preview": {
+        "apreview": {
             "android": {
                 "buildType": "apk"
             }
         },
-        "preview2": {
+        "apreview2": {
             "android": {
                 "gradleCommand": ":app:assembleRelease"
             }
         },
-        "preview3": {
+        "apreview3": {
             "developmentClient": true
         },
-        "production": {}
-    },
-    "build": {
-        "preview": {
+        "ipreview": {
             "ios": {
                 "simulator": true
             }
