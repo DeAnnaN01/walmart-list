@@ -1,0 +1,74 @@
+{
+    "ShoppingList": [
+        {
+            "item": "milk",
+            "categoryId": 2,
+            "notes": "2%"
+        },
+        {
+            "item": "pepsi",
+            "categoryId": 2,
+            "notes": ""
+        },
+        {
+            "item": "breakfast bowls",
+            "categoryId": 6,
+            "notes": "2 meat, 2 sausage, 2 steak and eggs"
+        },
+        {
+            "item": "cookies",
+            "categoryId": 7,
+            "notes": "madelines and real cookies"
+        },
+        {
+            "item": "hashbrowns",
+            "categoryId": 6,
+            "notes": "2"
+        },
+        {
+            "item": "pam",
+            "categoryId": 6,
+            "notes": "condiments before frozen"
+        },
+        {
+            "item": "cafe verona coffee",
+            "categoryId": 4,
+            "notes": ""
+        },
+        {
+            "item": "sourdough bread",
+            "categoryId": 4,
+            "notes": "grandma sicamore"
+        },
+        {
+            "item": "sausage-patties",
+            "categoryId": 5,
+            "notes": "2"
+        },
+        {
+            "item": "tv dinners",
+            "categoryId": 6,
+            "notes": ""
+        },
+        {
+            "item": "frozen cocktails",
+            "categoryId": 6,
+            "notes": ""
+        },
+        {
+            "item": "diet pills",
+            "categoryId": 1,
+            "notes": ""
+        },
+        {
+            "item": "deodorant",
+            "categoryId": 1,
+            "notes": "rose scented spray"
+        },
+        {
+            "item": "dry erase",
+            "categoryId": 8,
+            "notes": ""
+        }
+    ]
+}

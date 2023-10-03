@@ -1,14 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View, StatusBar, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
-import HomeScreen from './screens/HomeScreen';
+import HomeScreen from './screens/HomeScreen2';
 
 
 const App = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.Text}>
-                <HomeScreen  props={HomeScreen}/>
+            <Text style={styles.text}>
+                <HomeScreen />
             </Text>
             <StatusBar style="auto" />
         </View>
