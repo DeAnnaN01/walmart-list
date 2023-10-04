@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View, Text, Pressable, StyleSheet, ScrollView} from "react-native";
+import {View, Text, Pressable, StyleSheet} from "react-native";
 import {Card} from "react-native-elements";
 import ShoppingList from "../shared/ShoppingList";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
@@ -31,7 +31,7 @@ const CardContent = (props) => {
     };
 
     return (
-        <ScrollView style={{flex: 1}}>
+        <View style={{flex: 1}} >
             {/* This is what sorts my list by categoryId */}
             {Object.entries(categoryMap).map(([categoryId, categoryTitle]) => {
                 const filteredItems = ShoppingList.filter((sList) => sList.categoryId === parseInt(categoryId));
@@ -62,7 +62,7 @@ const CardContent = (props) => {
                         </Card>
                 );
             })}
-        </ScrollView>
+        </View>
     );
 };
 
