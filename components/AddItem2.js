@@ -48,7 +48,7 @@ const AddItem = () => {
     };
 
     return (
-        <ScrollView>
+        <ScrollView style={{flexShrink: '25%'}} >
             <View style={styles.formRow}>
                 <Text style={styles.formLabel}>Item:</Text>
                 <Input
